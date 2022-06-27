@@ -1,0 +1,31 @@
+{
+  "name": "sequelize",
+  "version": "1.0.0",
+  "description": "sequelize nodejs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.3",
+    "nodemon": "^2.0.16",
+    "sequelize": "^6.21.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^1.18.2"
+  }
+}
