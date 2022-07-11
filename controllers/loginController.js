@@ -2,11 +2,10 @@ require('dotenv').config()
 const db = require('../models')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { sendJsonResponse } = require('../middleware/validator')
-const { helper } = require('../middleware/validate')
+const { sendJsonResponse } = require('../helpers/validator')
+const { helper } = require('../helpers/validate')
 const Register = db.Register
-// console.log('token', process.env.JWT_SECRET)
-// Register  
+
 const registerUser = async(req, res) => {  
     const { email, password: plainTextPassword } = req.body  
     
@@ -27,8 +26,7 @@ const registerUser = async(req, res) => {
       }
     
     return res.json({ status : 'fail'})
-}
-
+  }
 }
 
 
@@ -64,21 +62,16 @@ const loginUser = async(req, res) => {
   });
 };
 
-
 const getAllUser = async (req, res) => {
   let user = await Register.findAll({})
   res.status(200).send(user)
-
 }
-
 
 const getOneUser = async (req, res) => {
   let id = req.params.id
   let user = await Register.findOne({ where: { id: id }})
   res.status(200).send(user)
-
 }
-
 
 const updateUser = async (req, res) => {
   let id = req.params.id
@@ -86,13 +79,11 @@ const updateUser = async (req, res) => {
   res.status(200).send(user)
 }
 
-
 const deleteUser = async (req, res) => {
   let id = req.params.id  
   await Register.destroy({ where: { id: id }} )
   res.status(200).send('User is deleted !')
 }
-
 
 module.exports = {
     registerUser,

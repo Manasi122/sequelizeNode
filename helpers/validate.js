@@ -7,8 +7,9 @@ module.exports.helper = (res, err, content, _next) => {
         errObj[er.path] = er.message;
       });
       return res.status(400).json({
-        status: 'success',
-        msg: errObj,
+        status: 'fail',
+        code: 400,
+        message: errObj,
       });
 
     } else if (err.name === "SequelizeUniqueConstraintError") {
@@ -17,9 +18,10 @@ module.exports.helper = (res, err, content, _next) => {
       err.errors.map((er) => {
         errObj[er.path] = er.message;
       });
-      return res.status(400).json({
-        status: 'success',
-        msg: errObj,
+      return res.json({
+        status: 'fail',
+        code: 400,
+        message: errObj,
       });
 
     } else if (err.validatorName === "notEmpty" || err.name === "SequelizeValidationError") {
@@ -28,9 +30,10 @@ module.exports.helper = (res, err, content, _next) => {
       err.errors.map((er) => {
         errObj[er.path] = er.message;
       });
-      return res.status(400).json({
-        status: 'success',
-        msg: errObj,
+      return res.json({
+        status: 'fail',
+        code: 400,
+        message: errObj,
       });
 
     } else if (err.name === "SequelizeValidationError") {
@@ -39,9 +42,10 @@ module.exports.helper = (res, err, content, _next) => {
       err.errors.map((er) => {
         errObj[er.path] = er.message;
       });
-      return res.status(400).json({
-        status: 'success',
-        msg: errObj,
+      return res.json({
+        status: 'fail',
+        code: 400,
+        message: errObj,
       });
 
     } else if (err.name === "SequelizeValidationError") {
@@ -50,13 +54,14 @@ module.exports.helper = (res, err, content, _next) => {
       err.errors.map((er) => {
         errObj[er.path] = er.message;
       });
-      return res.status(400).json({
-        status: 'success',
-        msg: errObj
+      return res.json({
+        status: 'fail',
+        code: 400,
+        message: errObj
       });
     }
 
-    return res.status(400).send(err);
+    return res.send(err);
 
   } else
     res.send({

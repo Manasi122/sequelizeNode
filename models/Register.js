@@ -1,4 +1,3 @@
-const validator = require('express-validator')
 module.exports = (sequelize, DataTypes) => {
   
     const register = sequelize.define('Register', {
@@ -6,24 +5,25 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: {
-          msg : 'email must be unique, email already in used'
+          message : 'email must be unique, email already in used'
         },
         isLowercase: true,
         validate:{
           notEmpty: {
-            msg: 'Validation notEmpty on email failed'
+            message: 'Please enter email id'
           },
           isEmail: {
-            msg: 'Please provide valid email'
+            message: 'Please provide valid email'
           }
         }
       },  
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          isAlpha: {msg: 'Validation isAlpha on password failed'}
-      }
+        // validate: {
+        //   notNull: { args: true, message: 'password can\'t be empty' },           
+        //   len: { args: [5,50], message: 'password length must be more than 5 characters' },
+        // }
      }
     });
     return register;
